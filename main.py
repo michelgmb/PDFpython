@@ -20,12 +20,16 @@ for index, row in pd.iterrows():
         pdf.set_text_color(100,100,100)#(rgb) 254 max
         # height h in pdf.cell should be as h for pdf.set-font()
         pdf.cell(w=0, h=12, txt=row['Topic'], align="L", border=0)
-        pdf.line(10,20, 200, 20)
+        for y in range(20,298,10):
+            pdf.line(10,y, 200, y)
+        #pdf.ln()
         #set footer
-        pdf.ln(259)
+        pdf.ln(255)
         pdf.set_font(family='Times', style='I', size=8)
         pdf.cell(w=0, h=8, txt=row['Topic'], align="R", border=0)
-        pdf.line(10, 20, 200, 20)
+        pdf.line(10, 20, 298, 20)
+        for y in range(20,298,10):
+            pdf.line(10,y, 200, y)
 
 pdf.output('output.pdf')
 
