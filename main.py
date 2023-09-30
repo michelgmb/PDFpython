@@ -3,6 +3,7 @@ import pandas as pd
 
 pdf = FPDF(orientation='P', unit='mm', format='A4')
 
+
 # create FDPF object
 # Layout ('P', 'L')
 # unit ('mm' , 'cm', 'in')
@@ -11,14 +12,20 @@ pdf = FPDF(orientation='P', unit='mm', format='A4')
 
 pd =pd.read_csv('topics.csv')
 for index, row in pd.iterrows():
-        #for row in range()
+    #print(row['Pages'])
+    for i in range(row['Pages']):
+        #Set the header
         pdf.add_page()
         pdf.set_font(family='Times', style='B', size=24)
         pdf.set_text_color(100,100,100)#(rgb) 254 max
         # height h in pdf.cell should be as h for pdf.set-font()
         pdf.cell(w=0, h=12, txt=row['Topic'], align="L", border=0)
         pdf.line(10,20, 200, 20)
-
+        #set footer
+        pdf.ln(259)
+        pdf.set_font(family='Times', style='I', size=8)
+        pdf.cell(w=0, h=8, txt=row['Topic'], align="R", border=0)
+        pdf.line(10, 20, 200, 20)
 
 pdf.output('output.pdf')
 
